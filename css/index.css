@@ -1,0 +1,24 @@
+:root
+{
+    --color-fondo: #F1FAEE;
+    --color-texto: #1D3557;
+    --color-primario: #457B9D;
+    --color-secundario: #A8DADC;
+    --color-acento: #E63946;
+}
+
+body
+{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0%;
+    background-color: var(--color-fondo);
+}
+
+.btn-menu
+{
+    margin: 20vh;
+    padding: 10vh 15vh;
+    font-size: 18vh;
+    cursor: pointer;
+    background-color: ;
+}
