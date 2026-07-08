@@ -1,6 +1,9 @@
 import { crearSlider }
 from "https://cdn.jsdelivr.net/gh/Melody-Mendoza/ProgramacionWeb-7SC_Actividad3@main/js/componente.js";
 
+import { validarCorreo, validarPassword } from "https://cdn.jsdelivr.net/gh/Angel-2329/Programacion-WEB-7SC-Actividad-2@main/js/validaciones.js";
+import { componente_tipError } from "https://cdn.jsdelivr.net/gh/Angel-2329/Verano-de-Programacion-WEB-7SC-Actividad-3@main/js/componente.js";
+
 const escuela = [
     {
         imagen: "img/posgrados.png",
@@ -145,72 +148,66 @@ document.addEventListener("DOMContentLoaded", () =>
         });
     }
 
-    new componente_tipError("#cap-correo", 
-    {
-        mensaje: "Ingrese un correo electrónico válido.",
-        regla: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    });
-
-    new componente_tipError("#cap-password", 
-    {
-        mensaje: "La contraseña debe tener al menos 6 caracteres.",
-        regla: /^.{6,}$/
-    });
-
-    new componente_tipError("#alum-control", 
-    {
-        mensaje: "El número de control debe ser exactamente de 6 dígitos numéricos.",
-        regla: /^\d{6}$/
-    });
-
-
     const formCaptura = document.getElementById("form-captura");
+    const capNombre = document.getElementById("cap-nombre"); 
     const capCorreo = document.getElementById("cap-correo");
     const capPassword = document.getElementById("cap-password");
-    
+    const alertaExito = document.getElementById("alerta-exito");
+    const alertaErrorCaptura = document.getElementById("alerta-error-captura");
+
     formCaptura.addEventListener("submit", (e) => 
     {
         e.preventDefault(); 
 
+        const nombreVal = capNombre.value.trim();
         const correoVal = capCorreo.value.trim();
         const passwordVal = capPassword.value;
 
-        if (!validarCorreo(correoVal)) 
+        const expresionNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+
+        if (nombreVal === "" || !expresionNombre.test(nombreVal) || correoVal === "" || passwordVal === "" || !validarCorreo(correoVal) || !validarPassword(passwordVal))
         {
-            capCorreo.focus();
+            alertaErrorCaptura.classList.remove("d-none");
+            alertaExito.classList.add("d-none"); 
             return;
         }
 
-        if (!validarPassword(passwordVal)) 
+        alertaErrorCaptura.classList.add("d-none");
+        alertaExito.classList.remove("d-none");
+        
+        setTimeout(() => 
         {
-            capPassword.focus();
-            return;
-        }
-
-        alert("¡Nuevo usuario guardado correctamente en el sistema!"); 
-        formCaptura.reset(); 
-        volverAlInicio();
+            alertaExito.classList.add("d-none"); 
+            formCaptura.reset(); 
+            volverAlInicio();
+        }, 1900);
     });
 
     const formAlumnos = document.getElementById("form-alumnos");
     const alumControl = document.getElementById("alum-control");
-    const modalEdad = document.getElementById("modal-edad");
+    const alumEdad = document.getElementById("alum-edad");
     const modalTexto = document.getElementById("modal-texto");
-    const btnCerrarModal = document.getElementById("btn-cerrar-modal");
+    const alertaErrorAlumnos = document.getElementById("alerta-error-alumnos");
+
+    const modalBootstrap = new bootstrap.Modal(document.getElementById('modal-edad'));
 
     formAlumnos.addEventListener("submit", (e) => 
     {
         e.preventDefault();
 
         const controlVal = alumControl.value.trim();
-        const edadInput = parseInt(document.getElementById("alum-edad").value);
+        const edadVal = alumEdad.value.trim(); 
+        const edadInput = parseInt(edadVal);
 
         const expresionControl = /^\d{6}$/;
-        if (!expresionControl.test(controlVal)) 
+
+        if (controlVal === "" || edadVal === "" || !expresionControl.test(controlVal)) 
         {
-            alumControl.focus();
+            alertaErrorAlumnos.classList.remove("d-none");
             return;
         }
+
+        alertaErrorAlumnos.classList.add("d-none");
 
         if (edadInput >= 18) 
         {
@@ -223,12 +220,11 @@ document.addEventListener("DOMContentLoaded", () =>
             modalTexto.style.color = "#c62828"; 
         }
 
-        modalEdad.classList.remove("ocultar-seccion");
+        modalBootstrap.show();
     });
 
-    btnCerrarModal.addEventListener("click", () => 
+    document.getElementById('modal-edad').addEventListener('hidden.bs.modal', () => 
     {
-        modalEdad.classList.add("ocultar-seccion");
         formAlumnos.reset(); 
         volverAlInicio();
     });

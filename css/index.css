@@ -128,17 +128,21 @@ body
     z-index: 800; 
 }
 
+.navbar-titulo 
+{ 
+    font-weight: 200px; 
+    font-size: 18px; 
+    margin-left: 50px; 
+}
 
 .navbar-usuario 
 { 
-    margin-left: 700px;
     position: relative; 
     cursor: pointer; 
-    font-weight: 200; 
+    font-weight: 200px; 
 }
 
-.dropdown-salir 
-{
+.dropdown-salir {
     display: none;
     position: absolute;
     top: 100%;
@@ -148,19 +152,13 @@ body
     min-width: 150px;
     margin-top: 10px;
 }
-.dropdown-salir.mostrar 
-{ 
-    display: block; 
-}
-
-.dropdown-salir a 
-{
+.dropdown-salir.mostrar { display: block; }
+.dropdown-salir a {
     display: block;
     padding: 10px;
     color: var(--color-texto);
     text-decoration: none;
 }
-
 .dropdown-salir a:hover 
 { 
     background-color: var(--color-secundario); 
@@ -182,11 +180,6 @@ body
     margin-top: 20px;
 }
 
-h2
-{
-    font-weight: 200px;
-}
-
 .ocultar-seccion 
 { 
     display: none !important; 
@@ -202,7 +195,12 @@ h2
     display: block; 
     margin-bottom: 5px; 
     color: var(--color-texto); 
-    font-weight: 100; 
+    font-weight: 200px; 
+}
+
+h2
+{
+    font-weight: 200px;
 }
 
 .campo input 
@@ -268,7 +266,7 @@ h2
     margin-top: 15px;
 }
 
-.seccion-lateral h2
+.seccion-lateral h3 
 {
     margin-top: 0;
     font-size: 16px;
@@ -319,15 +317,15 @@ h2
     background-color: var(--color-acento);
 }
 
-btn-regresar 
+.btn-regresar 
 {
-    background: var(--color-secundario);
+    background: transparent; /* Hace el fondo invisible */
     border: none;
     color: var(--color-texto);
     cursor: pointer;
     font-size: 14px;
     width: 100%;
-    margin-top: 19px;
+    margin-top: 15px;
     padding: 5px;
     text-align: center;
     display: block;
@@ -337,42 +335,4 @@ btn-regresar
 {
     color: var(--color-acento);
     text-decoration: underline; 
-}
-
-#contenedor-carrusel{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 30px;
-}
-#toast{
-    top: calc(70px + 20px);
-}
-
-#conocerMas{
-    background-color: var(--color-primario);
-    color: white;
-}
-
-#conocerMas:hover{
-    background-color: var(--color-texto);
-}
-
-#toast{
-    background-color: var(--color-acento);
-    color: white;
-    top: 90px;
-}
-
-.activo{
-    background-color: var(--color-primario);
-}
-
-.activa{
-    border: 3px solid #457B9D;
-}
-
-.miniatura:hover{
-    border-color: var(--color-acento);
 }
