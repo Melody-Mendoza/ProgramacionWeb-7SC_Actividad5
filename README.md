@@ -588,11 +588,11 @@ En este formulario se valida estrictamente que el Número de Control contenga ex
 ## Modal de edad
 
 <p align="center">
-  <img src="img/modal_edadC" width="650">
+  <img src="img/modal_edadC.png" width="650">
 </p>
 
 <p align="center">
-  <img src="img/modal_edadIn" width="650">
+  <img src="img/modal_edadIn.png" width="650">
 </p>
 
 ---
