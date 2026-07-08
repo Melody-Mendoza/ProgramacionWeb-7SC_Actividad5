@@ -291,7 +291,8 @@ body
     box-sizing: border-box; 
 }
 
-.btn-guardar-lateral {
+.btn-guardar-lateral 
+{
     background-color: var(--color-primario);
     color: var(--color-fondo);
     border: none;
@@ -304,6 +305,27 @@ body
     transition: background-color 0.2s;
 }
 
-.btn-guardar-lateral:hover {
+.btn-guardar-lateral:hover 
+{
     background-color: var(--color-acento);
+}
+
+btn-regresar 
+{
+    background: none;
+    border: none;
+    color: var(--color-primario);
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+    margin-top: 15px;
+    padding: 5px;
+    text-align: center;
+    display: block;
+}
+
+.btn-regresar:hover 
+{
+    color: var(--color-acento);
+    text-decoration: underline; 
 }

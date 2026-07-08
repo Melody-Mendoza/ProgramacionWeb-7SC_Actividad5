@@ -68,6 +68,27 @@ document.addEventListener("DOMContentLoaded", () =>
         contenedorCarrusel.classList.remove("ocultar-seccion");
     }
 
+    const btnRegresarCaptura = document.getElementById("btn-regresar-captura");
+    const btnRegresarAlumnos = document.getElementById("btn-regresar-alumnos");
+
+    if (btnRegresarCaptura) 
+    {
+        btnRegresarCaptura.addEventListener("click", () => 
+        {
+            document.getElementById("form-captura").reset();
+            volverAlInicio();
+        });
+    }
+
+    if (btnRegresarAlumnos) 
+    {
+        btnRegresarAlumnos.addEventListener("click", () => 
+        {
+            document.getElementById("form-alumnos").reset();
+            volverAlInicio();
+        });
+    }
+
     if (btnMostrarCaptura) 
     {
         btnMostrarCaptura.addEventListener("click", () => 
@@ -176,3 +197,4 @@ document.addEventListener("DOMContentLoaded", () =>
         volverAlInicio();
     });
 });
+
