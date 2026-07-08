@@ -1,3 +1,34 @@
+import { crearSlider }
+from "https://cdn.jsdelivr.net/gh/Melody-Mendoza/ProgramacionWeb-7SC_Actividad3@main/js/componente.js";
+
+const escuela = [
+    {
+        imagen: "img/posgrados.png",
+        titulo: "Posgrados",
+        descripcion: "Conoce la oferta educativa de posgrado del Instituto Tecnológico de Oaxaca."
+    },
+    {
+        imagen: "img/resultados.png",
+        titulo: "Resultados",
+        descripcion: "Consulta los resultados institucionales del Tecnológico Nacional de México."
+    },
+    {
+        imagen: "img/tec.jpg",
+        titulo: "Instituto Tecnológico de Oaxaca",
+        descripcion: "Bienvenido al Instituto Tecnológico de Oaxaca."
+    },
+    {
+        imagen: "img/violencia.jpg",
+        titulo: "Prevención de la Violencia",
+        descripcion: "Información sobre campañas de concientización y prevención."
+    },
+    {
+        imagen: "img/virtual.jpg",
+        titulo: "Campus Virtual",
+        descripcion: "Accede a los servicios académicos y plataformas digitales."
+    }
+];
+
 
 const usuarioActivo = sessionStorage.getItem("usuarioLogueado");
 
@@ -9,6 +40,11 @@ if (!usuarioActivo)
 
 document.addEventListener("DOMContentLoaded", () => 
 {
+        crearSlider(
+        "contenedor-carrusel",
+        escuela,
+        "Conoce más sobre "
+    ); 
     const spanNombreUsuario = document.getElementById("nombre-usuario");
     if (spanNombreUsuario) 
     {
