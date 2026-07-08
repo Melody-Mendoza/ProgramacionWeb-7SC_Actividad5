@@ -4,15 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
-</head>
+
+    <link rel="stylesheet" href="css/index.css">
+</head> 
 <body>
+    <header class="navbar">
+        <div class="navbar-titulo">Panel de Administración</div>
+        
+        <div class="navbar-usuario" id="perfil-usuario">
+            <span id="nombre-usuario">Cargando...</span> ▾
+            <div class="dropdown-salir" id="menu-salir">
+                <a href="login.html">Salir del sistema</a>
+            </div>
+        </div>
+    </header>
+
     <button id="btn-menu" class="btn-menu">☰</button>
 
-    <nav id="menu-lateral" class=" menu">
-        <button id="btn-cerrar-menu" class="btn-menu">&times;</button>
+    <aside id="menu-lateral" class="sidebar oculto">
+        <ul class="lista-menu">
+            <li>
+                <button class="btn-opcion" id="btn_usuarios">Usuarios</button>
 
-        <a href="#">Usuarios</a>
-        <a href="#">Captura</a>
-    </nav>
+                <ul class="submenu" id="subsubmenu_captura">
+                    <li>
+                        <button class="btn-subopcion">Captura</button>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <button class="btn-opcion" id="btn_alumnos">Alumnos</button>
+            </li>
+        </ul>
+    </aside>
+
+    <main class="contenido-principal">
+        
+        <section id="seccion-captura" class="seccion ocultar-seccion">
+            <h2>Captura de Usuarios</h2>
+            <form id="form-captura">
+                <div class="campo">
+                    <label>Nombre de Usuario:</label>
+                    <input type="text" id="cap-nombre" required>
+                </div>
+                <div class="campo">
+                    <label>Correo Electrónico:</label>
+                    <input type="email" id="cap-correo" required>
+                </div>
+                <div class="campo">
+                    <label>Contraseña:</label>
+                    <input type="password" id="cap-password" required>
+                </div>
+                <button type="submit" class="btn-guardar">Guardar Usuario</button>
+            </form>
+        </section>
+
+        <section id="seccion-alumnos" class="seccion ocultar-seccion">
+            <h2>Registro de Alumnos</h2>
+            <form id="form-alumnos">
+                <div class="campo">
+                    <label>Número de Control (6 dígitos):</label>
+                    <input type="text" id="alum-control" required>
+                </div>
+                <div class="campo">
+                    <label>Edad del Alumno:</label>
+                    <input type="number" id="alum-edad" required min="1">
+                </div>
+                <button type="submit" class="btn-guardar">Registrar Alumno</button>
+            </form>
+        </section>
+        
+    </main>
+
+    <div id="modal-edad" class="modal-fondo ocultar-seccion">
+        <div class="modal-contenido">
+            <h3>Validación de Edad</h3>
+            <p id="modal-texto"></p>
+            <button id="btn-cerrar-modal" class="btn-guardar">Aceptar</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/Angel-2329/Programacion-WEB-7SC-Actividad-2@main/js/validaciones.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Angel-2329/Verano-de-Programacion-WEB-7SC-Actividad-3@main/js/componente.js"></script>
+
+    <script src="js/index.js"></script>
 </body>
 </html>
