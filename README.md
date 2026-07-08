@@ -599,8 +599,6 @@ En este formulario se valida estrictamente que el Número de Control contenga ex
 
 ## Cierre de sesión
 
-## Registro de alumnos
-
 <p align="center">
   <img src="img/salida_sistema.png" width="650">
 </p>
