@@ -59,48 +59,84 @@ document.addEventListener("DOMContentLoaded", () =>
     
     const seccionCaptura = document.getElementById("seccion-captura");
     const seccionAlumnos = document.getElementById("seccion-alumnos");
-    const mensajeBienvenida = document.getElementById("mensaje-bienvenida");
+    const contenedorCarrusel = document.getElementById("contenedor-carrusel");
 
-    btnMostrarCaptura.addEventListener("click", () => 
+    function volverAlInicio() 
     {
-        seccionCaptura.classList.remove("ocultar-seccion");
+        seccionCaptura.classList.add("ocultar-seccion");
         seccionAlumnos.classList.add("ocultar-seccion");
-        if (mensajeBienvenida) mensajeBienvenida.classList.add("ocultar-seccion");
+        contenedorCarrusel.classList.remove("ocultar-seccion");
+    }
+
+    if (btnMostrarCaptura) 
+    {
+        btnMostrarCaptura.addEventListener("click", () => 
+        {
+            seccionCaptura.classList.remove("ocultar-seccion");
+            seccionAlumnos.classList.add("ocultar-seccion");
+            contenedorCarrusel.classList.add("ocultar-seccion");
+        });
+    }
+
+    if (btnMostrarAlumnos) 
+    {
+        btnMostrarAlumnos.addEventListener("click", () => 
+        {
+            seccionAlumnos.classList.remove("ocultar-seccion");
+            seccionCaptura.classList.add("ocultar-seccion");
+            contenedorCarrusel.classList.add("ocultar-seccion");
+        });
+    }
+
+    new componente_tipError("#cap-correo", 
+    {
+        mensaje: "Ingrese un correo electrónico válido.",
+        regla: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     });
 
-    btnMostrarAlumnos.addEventListener("click", () => {
-        seccionAlumnos.classList.remove("ocultar-seccion");
-        seccionCaptura.classList.add("ocultar-seccion");
-        if (mensajeBienvenida) mensajeBienvenida.classList.add("ocultar-seccion");
+    new componente_tipError("#cap-password", 
+    {
+        mensaje: "La contraseña debe tener al menos 6 caracteres.",
+        regla: /^.{6,}$/
     });
+
+    new componente_tipError("#alum-control", 
+    {
+        mensaje: "El número de control debe ser exactamente de 6 dígitos numéricos.",
+        regla: /^\d{6}$/
+    });
+
 
     const formCaptura = document.getElementById("form-captura");
+    const capCorreo = document.getElementById("cap-correo");
+    const capPassword = document.getElementById("cap-password");
     
     formCaptura.addEventListener("submit", (e) => 
     {
         e.preventDefault(); 
 
-        const correoInput = document.getElementById("cap-correo");
-        const passwordInput = document.getElementById("cap-password");
+        const correoVal = capCorreo.value.trim();
+        const passwordVal = capPassword.value;
 
-        if (!validarCorreo(correoInput.value)) 
+        if (!validarCorreo(correoVal)) 
         {
-            new componente_tipError(correoInput, "Por favor, ingresa un formato de correo válido.");
+            capCorreo.focus();
             return;
         }
 
-        if (!validarPassword(passwordInput.value)) 
+        if (!validarPassword(passwordVal)) 
         {
-            new componente_tipError(passwordInput, "La contraseña debe contener al menos 6 caracteres.");
+            capPassword.focus();
             return;
         }
 
         alert("¡Nuevo usuario guardado correctamente en el sistema!"); 
-
-        formCaptura.reset();
+        formCaptura.reset(); 
+        volverAlInicio();
     });
 
     const formAlumnos = document.getElementById("form-alumnos");
+    const alumControl = document.getElementById("alum-control");
     const modalEdad = document.getElementById("modal-edad");
     const modalTexto = document.getElementById("modal-texto");
     const btnCerrarModal = document.getElementById("btn-cerrar-modal");
@@ -109,32 +145,34 @@ document.addEventListener("DOMContentLoaded", () =>
     {
         e.preventDefault();
 
-        const controlInput = document.getElementById("alum-control");
+        const controlVal = alumControl.value.trim();
         const edadInput = parseInt(document.getElementById("alum-edad").value);
 
         const expresionControl = /^\d{6}$/;
-        if (!expresionControl.test(controlInput.value)) 
+        if (!expresionControl.test(controlVal)) 
         {
-            new componente_tipError(controlInput, "El número de control debe tener exactamente 6 dígitos.");
+            alumControl.focus();
             return;
         }
 
         if (edadInput >= 18) 
         {
-            modalTexto.textContent = `El alumno con número de control ${controlInput.value} es MAYOR de edad.`;
+            modalTexto.textContent = `El alumno con número de control ${controlVal} es MAYOR de edad.`;
             modalTexto.style.color = "#2e7d32"; 
-        }
+        } 
         else 
         {
-            modalTexto.textContent = `El alumno con número de control ${controlInput.value} es MENOR de edad.`;
+            modalTexto.textContent = `El alumno con número de control ${controlVal} es MENOR de edad.`;
             modalTexto.style.color = "#c62828"; 
         }
 
         modalEdad.classList.remove("ocultar-seccion");
     });
 
-    btnCerrarModal.addEventListener("click", () => {
+    btnCerrarModal.addEventListener("click", () => 
+    {
         modalEdad.classList.add("ocultar-seccion");
         formAlumnos.reset(); 
+        volverAlInicio();
     });
 });
