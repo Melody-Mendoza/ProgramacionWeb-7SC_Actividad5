@@ -63,6 +63,9 @@ formulario.addEventListener("submit",function(event){
 
     // Guardar usuario
 
+    sessionStorage.setItem("usuarioLogueado",correoUsuario);
+    
+
     sessionStorage.setItem("usuario",correoUsuario);
 
     window.location.href="index.html";
