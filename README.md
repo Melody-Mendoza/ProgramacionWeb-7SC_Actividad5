@@ -226,19 +226,25 @@ El componente fue adaptado para mostrar imágenes relacionadas con el Instituto 
 
 ---
 
-# Parte desarrollada por mi compañero
+# Parte desarrollada por Angel de Jesús Méndez García
 
-> **Esta sección será completada por el segundo integrante del equipo.**
+## 1. Control de Acceso y Seguridad de Sesión
+Se implementó una restricción de seguridad al inicio del archivo principal. Si un usuario intenta ingresar a `index.html` sin haber pasado por el Login, el sistema lo detecta inmediatamente mediante `sessionStorage` y lo redirige de forma obligatoria a `login.html` usando `window.location.replace()`.
 
-En esta parte se documentará:
+## 2. Barra de Navegación Dinámica (Navbar)
+El Navbar recupera el correo almacenado en el navegador e inyecta dinámicamente el nombre del usuario activo dentro del elemento `#nombre-usuario`. Además, cuenta con un menú desplegable interactivo que se activa mediante un evento `click` sobre el perfil, permitiendo desplegar la opción de salida.
 
-- Sidebar.
-- Navbar.
-- Captura de usuarios.
-- Registro de alumnos.
-- Modal de edad.
-- Validaciones adicionales.
-- Cierre de sesión.
+## 3. Menú Lateral Desplegable (Sidebar)
+Se desarrolló un Sidebar interactivo que permanece oculto (`left: -250px`) por defecto mediante CSS y se despliega suavemente de forma lateral al presionar el botón de hamburguesa (`☰`). Cuenta con submenús anidados con transiciones para las opciones de "Captura" y "Alumnos".
+
+## 4. Gestión de Secciones en SPA (Single Page Application)
+Para evitar recargar la página, se creó un sistema de navegación basado en clases de CSS (`ocultar-seccion` con `display: none !important`). Al presionar las opciones del Sidebar, el carrusel de inicio se oculta y se revela la sección de formulario correspondiente. De igual forma, los botones de "Regresar al inicio" limpian los formularios con `.reset()` y restauran el estado inicial.
+
+## 5. Formulario de Captura de Usuarios
+Se añadieron validaciones estrictas mediante expresiones regulares para el campo de nombre (permitiendo únicamente letras y espacios) y se conectaron las funciones importadas vía CDN (`validarCorreo` y `validarPassword`) para asegurar la integridad de los datos antes de simular el guardado con alertas de Bootstrap.
+
+## 6. Formulario de Alumnos y Modal de Edad
+Se implementó el procesamiento del Número de Control (validando rigurosamente mediante la expresión regular `/^\d{6}$/` que conste de exactamente 6 dígitos) y la edad del alumno. Al enviar los datos correctos, se manipula una instancia nativa del Modal de Bootstrap 5 para calcular de manera dinámica si es mayor o menor de edad, aplicando estilos condicionales en tiempo real.
 
 ---
 
@@ -476,17 +482,38 @@ Con esto se logró integrar un componente reutilizable sin modificar su estructu
 
 ---
 
-## Paso 9
+## Paso 9. Desarrollo del Sidebar y Navbar con Usuario Activo
+Se estructuró el encabezado (`<header class="navbar">`) y el menú lateral (`<aside id="menu-lateral">`) en el archivo `index.html`. En el archivo `index.js`, se implementó la lógica para interceptar la sesión y cargar el usuario:
 
-**(Espacio para que mi compañero documente el Sidebar y el Navbar.)**
+```javascript
+const usuarioActivo = sessionStorage.getItem("usuarioLogueado");
 
+if (!usuarioActivo) 
+{
+    window.location.replace("login.html");
+}
+
+// Inyección del nombre en el Navbar
+const spanNombreUsuario = document.getElementById("nombre-usuario");
+if (spanNombreUsuario) 
+{
+    spanNombreUsuario.textContent = usuarioActivo;
+}
+```
 
 
 ---
 
-## Paso 10
+## Paso 10. Formularios (SPA), Validaciones y Modal de Edad
 
-**(Espacio para que mi compañero documente el formulario de alumnos y el Modal.)**
+**Navegación tipo SPA (Single Page Application):**
+Para mejorar la experiencia de usuario, el panel no recarga la página. Al seleccionar una opción en el menú lateral, JavaScript agrega o quita la clase `.ocultar-seccion` para esconder el carrusel principal y mostrar el formulario correspondiente ("Captura de Usuarios" o "Registro de Alumnos"). Ambos formularios cuentan con un botón "Regresar al inicio" que limpia los campos y restaura la vista del carrusel.
+
+**Validación del Formulario de Usuarios:**
+Se desactivaron las alertas nativas del navegador usando el atributo `novalidate` en la etiqueta `<form>`. Al presionar guardar, el sistema valida que ningún campo esté vacío y aplica una expresión regular estricta (`/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/`) para asegurar que el nombre solo contenga letras. Posteriormente, utiliza las funciones `validarCorreo` y `validarPassword` importadas del CDN. Si hay errores, se muestra una alerta roja de Bootstrap; si es exitoso, se muestra una alerta verde y el sistema regresa al inicio.
+
+**Validación de Alumnos y Modal de Bootstrap:**
+En este formulario se valida estrictamente que el Número de Control contenga exactamente 6 dígitos mediante la expresión regular `/^\d{6}$/`. Si los datos son correctos, el sistema evalúa la edad ingresada y actualiza dinámicamente el texto y color de un Modal nativo de Bootstrap 5 (`new bootstrap.Modal()`). Si el alumno tiene 18 años o más, el mensaje se pinta de verde indicando que es MAYOR de edad; de lo contrario, se pinta de rojo. Al cerrar este Modal, el formulario se resetea automáticamente.
 
 
 
@@ -497,7 +524,7 @@ Con esto se logró integrar un componente reutilizable sin modificar su estructu
 ## Login
 
 <p align="center">
-  <img src="img/login.png" width="350">
+  <img src="img/login.png" width="650">
 </p>
 
 ---
@@ -505,7 +532,7 @@ Con esto se logró integrar un componente reutilizable sin modificar su estructu
 ## Validación del correo
 
 <p align="center">
-  <img src="img/correo.png" width="350">
+  <img src="img/correo.png" width="650">
 </p>
 
 ---
@@ -513,7 +540,7 @@ Con esto se logró integrar un componente reutilizable sin modificar su estructu
 ## Validación de la contraseña
 
 <p align="center">
-  <img src="img/contraseña.png" width="350">
+  <img src="img/contraseña.png" width="650">
 </p>
 
 ---
@@ -542,22 +569,43 @@ Con esto se logró integrar un componente reutilizable sin modificar su estructu
 
 ---
 
+## Registro de captura
+
+<p align="center">
+  <img src="img/registro_captura.png" width="650">
+</p>
+
+---
 
 ## Registro de alumnos
 
-📷
+<p align="center">
+  <img src="img/registro_alumno.png" width="650">
+</p>
 
 ---
 
 ## Modal de edad
 
-📷
+<p align="center">
+  <img src="img/modal_edadC" width="650">
+</p>
+
+<p align="center">
+  <img src="img/modal_edadIn" width="650">
+</p>
 
 ---
 
 ## Cierre de sesión
 
-📷
+## Registro de alumnos
+
+<p align="center">
+  <img src="img/salida_sistema.png" width="650">
+</p>
+
+---
 
 ---
 
