@@ -338,3 +338,41 @@ btn-regresar
     color: var(--color-acento);
     text-decoration: underline; 
 }
+
+#contenedor-carrusel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 30px;
+}
+#toast{
+    top: calc(70px + 20px);
+}
+
+#conocerMas{
+    background-color: var(--color-primario);
+    color: white;
+}
+
+#conocerMas:hover{
+    background-color: var(--color-texto);
+}
+
+#toast{
+    background-color: var(--color-acento);
+    color: white;
+    top: 90px;
+}
+
+.activo{
+    background-color: var(--color-primario);
+}
+
+.activa{
+    border: 3px solid #457B9D;
+}
+
+.miniatura:hover{
+    border-color: var(--color-acento);
+}
