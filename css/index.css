@@ -9,7 +9,7 @@
 
 body
 {
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:sans-serif;
     margin: 0%;
     background-color: var(--color-fondo);
 }
@@ -111,7 +111,8 @@ body
     color: var(--color-texto);
 }
 
-.navbar {
+.navbar 
+{
     background-color: var(--color-primario);
     color: var(--color-fondo);
     height: 8vh;
@@ -127,21 +128,17 @@ body
     z-index: 800; 
 }
 
-.navbar-titulo 
-{ 
-    font-weight: bold; 
-    font-size: 18px; 
-    margin-left: 50px; 
-}
 
 .navbar-usuario 
 { 
+    margin-left: 700px;
     position: relative; 
     cursor: pointer; 
-    font-weight: bold; 
+    font-weight: 200; 
 }
 
-.dropdown-salir {
+.dropdown-salir 
+{
     display: none;
     position: absolute;
     top: 100%;
@@ -151,13 +148,19 @@ body
     min-width: 150px;
     margin-top: 10px;
 }
-.dropdown-salir.mostrar { display: block; }
-.dropdown-salir a {
+.dropdown-salir.mostrar 
+{ 
+    display: block; 
+}
+
+.dropdown-salir a 
+{
     display: block;
     padding: 10px;
     color: var(--color-texto);
     text-decoration: none;
 }
+
 .dropdown-salir a:hover 
 { 
     background-color: var(--color-secundario); 
@@ -169,13 +172,19 @@ body
     padding: 20px 50px;
 }
 
-.seccion {
-    background-color: white;
+.seccion 
+{
+    background-color: var(--color-secundario);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     max-width: 500px;
     margin-top: 20px;
+}
+
+h2
+{
+    font-weight: 200px;
 }
 
 .ocultar-seccion 
@@ -193,7 +202,7 @@ body
     display: block; 
     margin-bottom: 5px; 
     color: var(--color-texto); 
-    font-weight: bold; 
+    font-weight: 100; 
 }
 
 .campo input 
@@ -259,7 +268,7 @@ body
     margin-top: 15px;
 }
 
-.seccion-lateral h3 
+.seccion-lateral h2
 {
     margin-top: 0;
     font-size: 16px;
@@ -312,13 +321,13 @@ body
 
 btn-regresar 
 {
-    background: none;
+    background: var(--color-secundario);
     border: none;
-    color: var(--color-primario);
+    color: var(--color-texto);
     cursor: pointer;
     font-size: 14px;
     width: 100%;
-    margin-top: 15px;
+    margin-top: 19px;
     padding: 5px;
     text-align: center;
     display: block;
