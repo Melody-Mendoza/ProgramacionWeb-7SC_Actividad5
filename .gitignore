@@ -1,0 +1,27 @@
+# Dependencias
+node_modules/
+
+# Variables de entorno y secretos
+.env
+
+# Archivos de configuración de editores e IDEs (VS Code, etc.)
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Archivos ocultos del sistema operativo (Mac/Windows)
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs y bases de datos locales
+*.log
+*.sqlite3
+
+# Carpetas de build o distribución
+dist/
+build/
